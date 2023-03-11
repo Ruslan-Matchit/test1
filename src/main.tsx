@@ -1,11 +1,17 @@
+import {
+  ApolloClient, InMemoryCache, ApolloProvider,
+} from '@apollo/client';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
 
 import App from './App';
-import { store } from './app/store';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000',
+  cache: new InMemoryCache(),
+});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={store}>
+  <ApolloProvider client={client}>
     <App />
-  </Provider>,
+  </ApolloProvider>,
 );
